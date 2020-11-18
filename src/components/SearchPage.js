@@ -77,31 +77,36 @@ function SearchPage() {
       {term && (
         <div className="searchPage__results">
           <p className="searchPage__resultCount">
-            About {data?.searchInformation.formattedTotalResults} results in (
+            About {data?.searchInformation.formattedTotalResults} results(
             {data?.searchInformation.formattedSearchTime} seconds) for {term}
           </p>
-          {data?.items.map((item) => (
-            <div className="searchPage__result">
-              <a href={item.link}>
-                {item.pagemap?.cse_image?.length > 0 &&
-                  item.pagemap?.cse_image[0]?.src && (
-                    <img
-                      className="searchPage__resultImage"
-                      src={
-                        item.pagemap?.cse_image?.length > 0 &&
-                        item.pagemap?.cse_image[0]?.src
-                      }
-                      alt=""
-                    />
-                  )}
-              </a>
-              <a href={item.link}>{item.displayLink}</a>
-              <a href={item.link} className="searchPage__resultTitle">
-                <h2>{item.title}</h2>
-              </a>
-              <p className="searchPage__resultSnippet">{item.snippet}</p>
-            </div>
-          ))}
+          {data?.items.map(
+            (item, key) => (
+              (key = item.limk),
+              (
+                <div className="searchPage__result">
+                  <a href={item.link}>
+                    {item.pagemap?.cse_image?.length > 0 &&
+                      item.pagemap?.cse_image[0]?.src && (
+                        <img
+                          className="searchPage__resultImage"
+                          src={
+                            item.pagemap?.cse_image?.length > 0 &&
+                            item.pagemap?.cse_image[0]?.src
+                          }
+                          alt=""
+                        />
+                      )}
+                  </a>
+                  <a href={item.link}>{item.displayLink}</a>
+                  <a href={item.link} className="searchPage__resultTitle">
+                    <h2>{item.title}</h2>
+                  </a>
+                  <p className="searchPage__resultSnippet">{item.snippet}</p>
+                </div>
+              )
+            )
+          )}
         </div>
       )}
     </div>
